@@ -45,6 +45,3 @@ A notes app backend built with FastAPI, SQLAlchemy and PostgreSQL.
 \- Day 1: CRUD API with PostgreSQL (done)
 
 \- Day 2: AI summarization with Google Gemini (done)
-
-\- Next: Frontend
-

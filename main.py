@@ -1,7 +1,7 @@
 from typing import List
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
-
+import ai_service
 import models, schemas
 from database import engine, get_db
 
@@ -55,3 +55,16 @@ def delete_note(note_id: int, db: Session = Depends(get_db)):
 @app.get("/")
 def root():
     return {"message": "Notes API is running"}
+
+@app.post("/notes/{note_id}/summarize", response_model=schemas.NoteOut)
+def summarize_notes(note_id: int, db: Session = Depends(get_db)):
+    note = db.query(models.Note).filter(models.Note.id == note_id).first()
+    if not note:
+        raise HTTPException(status_code=404, detail="Note not found")
+    try:
+        note.summary=ai_service.summarize_text(note.content)
+    except Exception:
+        raise HTTPException(status_code=503, detail="AI service is busy, please try again.")
+    db.commit()
+    db.refresh(note)
+    return note

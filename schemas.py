@@ -19,5 +19,6 @@ class NoteOut(BaseModel):
     id: int
     title: str
     content: str
+    summary: Optional[str] = None
     created_at: datetime
     updated_at: Optional[datetime] = None

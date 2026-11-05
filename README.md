@@ -36,11 +36,15 @@ A notes app backend built with FastAPI, SQLAlchemy and PostgreSQL.
 
 \- DELETE /notes/{id}: delete a note
 
+\- POST /notes/{id}/summarize: generate and save an AI summary of a note
+
 
 
 \## Progress
 
 \- Day 1: CRUD API with PostgreSQL (done)
 
-\- Day 2: AI summarization (upcoming)
+\- Day 2: AI summarization with Google Gemini (done)
+
+\- Next: Frontend
 
